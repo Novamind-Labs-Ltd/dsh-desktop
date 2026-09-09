@@ -178,7 +178,7 @@ export function DesktopFrameTitlebar({ api, environment, setMode, t }: DesktopFr
       data-material={environment.material}
     >
       <div className="dshDesktopFrameIdentity">
-        <span className="dshDesktopFrameProduct">Novie Desktop</span>
+        <span className="dshDesktopFrameProduct">{environment.brandName ?? 'DSH Desktop'}</span>
         <DesktopVersionControl version={environment.version} checkForUpdates={api.checkForUpdates} t={t} />
         <DesktopModeControl
           mode={environment.mode}

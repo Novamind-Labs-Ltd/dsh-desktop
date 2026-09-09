@@ -1,3 +1,4 @@
+import type {} from './branding.ts'
 /** DSH Desktop Host plugin: owns the selected native shell generation. */
 
 import type { IncomingMessage, ServerResponse } from 'node:http'
@@ -482,6 +483,7 @@ export function apply(ctx: Context, config: Config): void {
         windowTitle: 'DeepSeek Harness Desktop',
         iconPath,
         trayIcons,
+        readBrandName: () => ctx.bail('desktop/brand-name'),
         readLocalePreference: () => {
           return desktopLocalePreference(
             (ctx.settings.get(UI_LOCALE_SETTINGS_NAMESPACE) as LocaleSettings | undefined)?.preference,

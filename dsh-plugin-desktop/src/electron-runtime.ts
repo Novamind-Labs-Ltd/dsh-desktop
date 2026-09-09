@@ -1,3 +1,4 @@
+import { parseDesktopBrandName } from './branding.ts'
 /** Electron implementation of the launcher-provided desktop runtime capability. */
 
 import {
@@ -222,11 +223,17 @@ export class ElectronDesktopRuntime implements DesktopRuntime {
 
   /** @inheritdoc */
   mountScheduled(beforeInteractive?: () => void): Promise<void> {
-    const spec = this.scheduled
-    if (spec === undefined) {
+    const scheduled = this.scheduled
+    if (scheduled === undefined) {
       return Promise.reject(new Error('dsh-plugin-desktop: the Cordis shell plugin did not register a window'))
     }
     if (this.mountTask === undefined) {
+      const brandName = parseDesktopBrandName(scheduled.readBrandName?.())
+      const url = new URL(scheduled.url)
+      if (brandName !== undefined) url.searchParams.set('dsh-desktop-brand-name', brandName)
+      const spec = brandName === undefined ? scheduled : {
+        ...scheduled, brandName, productName: brandName, windowTitle: brandName, url: url.href,
+      }
       this.setLocalePreference(spec.readLocalePreference())
       const generation = new ElectronShellGeneration({
         platform: this.platformStrategy,

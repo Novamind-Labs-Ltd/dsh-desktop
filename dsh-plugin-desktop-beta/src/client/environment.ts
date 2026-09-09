@@ -1,3 +1,4 @@
+import { parseDesktopBrandName } from '../branding.ts'
 /** Desktop renderer modes accepted from the Electron-owned page URL. */
 export type DesktopClientMode = 'compatibility' | 'extended' | 'advanced'
 
@@ -9,6 +10,8 @@ export type DesktopClientMaterial = 'off' | 'transparent' | 'mica'
 
 /** Validated renderer environment supplied by the Electron Host. */
 export interface DesktopClientEnvironment {
+  /** Optional product name supplied by the active profile branding plugin. */
+  brandName?: string | undefined
   /** Installed Desktop product version supplied by the Electron Host. */
   version: string
   /** Active shell mode for this BrowserWindow lifetime. */
@@ -69,6 +72,7 @@ export function parseDesktopClientEnvironment(search: string): DesktopClientEnvi
     throw new Error('dsh-plugin-desktop: renderer material is incompatible with its mode or platform')
   }
   return {
+    brandName: parseDesktopBrandName(params.get('dsh-desktop-brand-name') ?? undefined),
     version,
     mode: mode as DesktopClientMode,
     platform: platform as DesktopClientPlatform,

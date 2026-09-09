@@ -1210,6 +1210,27 @@ describe('Electron desktop runtime', () => {
     })
   })
 
+  it('resolves profile branding after scheduling and before showing the window', async () => {
+    vi.spyOn(process, 'platform', 'get').mockReturnValue('darwin')
+    const { ElectronDesktopRuntime } = await import('../src/electron-runtime.ts')
+    const runtime = new ElectronDesktopRuntime(async () => {})
+    let name: string | undefined
+    const readBrandName = vi.fn(() => name)
+    const release = runtime.schedule({ ...spec, mode: 'extended', readBrandName })
+    expect(readBrandName).not.toHaveBeenCalled()
+    name = 'Example Desktop'
+    try {
+      await runtime.mountScheduled()
+      expect(readBrandName).toHaveBeenCalledOnce()
+      expect(electron.browserWindows[0]?.accessibleTitle).toBe(name)
+      expect(electron.trays[0]?.setToolTip).toHaveBeenCalledWith(name)
+      expect(electron.loadURL).toHaveBeenCalledWith('http://127.0.0.1:43120/?dsh-desktop-brand-name=Example+Desktop')
+      expect(spec.productName).toBe('DSH Desktop')
+    } finally {
+      await release()
+    }
+  })
+
   it('starts from the saved locale and rebuilds native tray commands when it changes', async () => {
     vi.spyOn(process, 'platform', 'get').mockReturnValue('win32')
     const { ElectronDesktopRuntime } = await import('../src/electron-runtime.ts')

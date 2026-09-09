@@ -6,6 +6,7 @@ export const COMPATIBILITY_CHROME_STATE = 'dsh-desktop:compatibility-chrome-stat
 export type CompatibilityChromeCommand = 'state' | 'check-for-updates' | 'mode-extended' | 'mode-advanced' | 'terminal' | 'restart' | 'restart-recovery' | 'reload' | 'developer' | 'expand' | 'collapse'
 
 export interface CompatibilityChromeState {
+  readonly brandName?: string | undefined
   readonly locale: DesktopLocale
   readonly platform: DesktopPlatform
   readonly version: string

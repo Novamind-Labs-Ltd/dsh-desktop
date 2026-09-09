@@ -92,7 +92,7 @@ export class CompatibilityShell {
   }
 
   private state(): CompatibilityChromeState {
-    return { locale: this.actions.locale(), version: this.actions.version, platform: this.platform, material: this.spec.material }
+    return { brandName: this.spec.brandName, locale: this.actions.locale(), version: this.actions.version, platform: this.platform, material: this.spec.material }
   }
 
   private readonly resize = (): void => {

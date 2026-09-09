@@ -145,6 +145,10 @@ export interface DesktopShellSpec extends DesktopWindowConfig {
   authenticationUrl: string
   /** Ephemeral capability attached by Electron to this renderer generation's requests. */
   rendererAccessHeader: DesktopRendererAccessHeader
+  /** Optional branding provider, read after all profile plugins settle. */
+  readBrandName?(): string | undefined
+  /** Resolved profile branding for the isolated chrome. */
+  brandName?: string
   /** Native application and tray label. */
   productName: string
   /** Visible native caption on platforms that retain a title. */

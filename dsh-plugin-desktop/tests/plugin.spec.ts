@@ -227,6 +227,16 @@ function createHarness(
 }
 
 describe('desktop Host plugin', () => {
+  it('defers the brand event until the native runtime requests it', () => {
+    const harness = createHarness()
+    const bail = vi.fn(() => 'Example Desktop')
+    Object.assign(harness.ctx, { bail })
+    apply(harness.ctx, config)
+    expect(bail).not.toHaveBeenCalled()
+    expect(harness.shell()?.readBrandName?.()).toBe('Example Desktop')
+    expect(bail).toHaveBeenCalledWith('desktop/brand-name')
+  })
+
   it('defaults to compatibility mode and validates both schemas', () => {
     expect(Config({} as DesktopConfig)).toEqual(config)
     expect(Config({ mode: 'advanced' } as DesktopConfig)).toEqual({ ...config, mode: 'advanced' })

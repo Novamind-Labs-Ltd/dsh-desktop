@@ -84,6 +84,17 @@ describe('isolated compatibility shell', () => {
     shell.dispose()
   })
 
+  it('passes profile branding to the isolated chrome through its existing state bridge', async () => {
+    const { shell, handler, event, spec } = fixture()
+    spec.brandName = 'Example Desktop'
+    await shell.load()
+    try {
+      expect(handler(event(), 'state')).toMatchObject({ brandName: 'Example Desktop' })
+    } finally {
+      shell.dispose()
+    }
+  })
+
   it('rejects other renderers, child frames, navigated chrome, and arbitrary commands', async () => {
     const { shell, handler, event, webContents, actions } = fixture()
     await shell.load()
