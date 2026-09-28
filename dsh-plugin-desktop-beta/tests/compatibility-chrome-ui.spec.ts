@@ -13,7 +13,7 @@ describe('compatibility HTML chrome', () => {
     expect(shared).toBeDefined()
     const frame = '.dshDesktopFrameTitlebar {' + shared
     expect(read('native-ui/compatibility-chrome/style.css')).toContain(frame
-      .replaceAll('${DESKTOP_FRAME_HEIGHT}', '36')
+      .replaceAll('${DESKTOP_FRAME_HEIGHT}', '44')
       .replaceAll('${MACOS_TRAFFIC_LIGHT_SAFE_WIDTH + 8}', '88')
       .replaceAll('${WINDOWS_CAPTION_CONTROLS_WIDTH + 8}', '146'))
     const view = read('client/DesktopFrameTitlebarView.tsx')

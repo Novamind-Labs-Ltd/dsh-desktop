@@ -164,12 +164,12 @@ describe('advanced desktop layout', () => {
   })
 
   it('owns native caption geometry with one fixed macOS drag strip above page content', () => {
-    expect(ADVANCED_MACOS_CONTENT_INSET).toBe(20)
-    expect(ADVANCED_MACOS_DRAG_REGION_HEIGHT).toBe(32)
+    expect(ADVANCED_MACOS_CONTENT_INSET).toBe(32)
+    expect(ADVANCED_MACOS_DRAG_REGION_HEIGHT).toBe(44)
     expect(ADVANCED_MACOS_DRAG_LAYER_Z_INDEX).toBe(20)
     expect(ADVANCED_MACOS_DRAG_LAYER_Z_INDEX).toBeLessThan(25)
     expect(ADVANCED_MACOS_DRAG_REGION_HEIGHT).toBeGreaterThan(ADVANCED_MACOS_CONTENT_INSET)
-    expect(ADVANCED_WINDOWS_TITLEBAR_HEIGHT).toBe(32)
+    expect(ADVANCED_WINDOWS_TITLEBAR_HEIGHT).toBe(44)
     let css = ''
     const remove = vi.fn()
     const style = {
@@ -504,7 +504,7 @@ describe('independent Desktop frame', () => {
     try {
       const dispose = installExtendedStyles()
       expect(css).toContain(`--dsh-desktop-frame-height: 0px`)
-      expect(DESKTOP_FRAME_HEIGHT).toBe(36)
+      expect(DESKTOP_FRAME_HEIGHT).toBe(44)
       expect(css).toMatch(/#root \{[^}]*position: fixed;[^}]*right: 0;[^}]*bottom: 0;[^}]*left: 0;[^}]*padding-top: 0;[^}]*transform: translateZ\(0\);/)
       expect(css).toMatch(/\[data-shell-overlay\] \{[^}]*overflow: hidden;[^}]*transform: translateZ\(0\);/)
       expect(css).toMatch(/\[data-slot="sidebar\.footer\.action"\] \{[^}]*display: flex !important;[^}]*flex-direction: column;[^}]*max-height: min\(40vh, 240px\);[^}]*overflow-y: auto;/)

@@ -10,7 +10,7 @@ export function desktopFrameIsVisible(search: string): boolean {
   return new URLSearchParams(search).get('frame') === 'true'
 }
 
-/** Independent 36px drag frame shared by Desktop-owned utility surfaces. */
+/** Independent 44px drag frame shared by Desktop-owned utility surfaces. */
 export function DesktopFrame(): JSX.Element | null {
   if (!desktopFrameIsVisible(window.location.search)) return null
   return <header aria-hidden="true" className="dshNativeFrame" data-platform={nativePlatform()} />

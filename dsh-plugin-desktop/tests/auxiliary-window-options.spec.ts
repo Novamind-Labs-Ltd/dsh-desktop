@@ -5,21 +5,21 @@ import {
 } from '../src/auxiliary-window-options.ts'
 
 describe('Desktop auxiliary window chrome', () => {
-  it('uses an empty 36px inset frame on macOS', () => {
+  it('uses an empty 44px inset frame on macOS', () => {
     expect(auxiliaryWindowChromeOptions('darwin')).toEqual({
       titleBarStyle: 'hiddenInset',
-      trafficLightPosition: { x: 16, y: 12 },
+      trafficLightPosition: { x: 16, y: 16 },
     })
     expect(auxiliaryWindowHasCustomFrame('darwin')).toBe(true)
   })
 
-  it('uses native caption controls over an empty 36px frame on Windows', () => {
+  it('uses native caption controls over an empty 44px frame on Windows', () => {
     expect(auxiliaryWindowChromeOptions('win32')).toEqual({
       titleBarStyle: 'hidden',
       titleBarOverlay: {
         color: '#00000000',
         symbolColor: '#7f858f',
-        height: 36,
+        height: 44,
       },
       hasShadow: true,
       roundedCorners: true,

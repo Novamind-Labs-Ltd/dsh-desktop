@@ -219,7 +219,7 @@ describe('DesktopDialogWindow', () => {
     await vi.waitFor(() => { expect(electron.windows).toHaveLength(1) })
     expect(electron.windows[0]?.options).toEqual(expect.objectContaining({
       titleBarStyle: 'hiddenInset',
-      trafficLightPosition: { x: 16, y: 12 },
+      trafficLightPosition: { x: 16, y: 16 },
     }))
     expect(electron.windows[0]?.options).not.toHaveProperty('minHeight')
     expect(electron.windows[0]?.loadFile).toHaveBeenCalledWith(

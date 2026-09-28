@@ -88,7 +88,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  height: 36px;
+  height: 44px;
   border-bottom: 1px solid var(--border);
   background: color-mix(in oklch, var(--background) 92%, transparent);
   user-select: none;
@@ -101,5 +101,5 @@
   box-sizing: border-box;
   padding-top: calc(var(--spacing) * 5);
 }
-.dshNativeFrame ~ .dshNativeContent { padding-top: calc(36px + var(--spacing) * 5); }
+.dshNativeFrame ~ .dshNativeContent { padding-top: calc(44px + var(--spacing) * 5); }
 button, a, input, textarea, select { -webkit-app-region: no-drag; }

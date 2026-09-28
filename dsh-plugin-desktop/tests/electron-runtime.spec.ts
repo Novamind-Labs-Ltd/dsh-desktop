@@ -413,7 +413,7 @@ describe('Electron desktop runtime', () => {
       height: 840,
       show: false,
       titleBarStyle: 'hiddenInset',
-      trafficLightPosition: { x: 16, y: 12 },
+      trafficLightPosition: { x: 16, y: 16 },
       webPreferences: {
         contextIsolation: true,
         nodeIntegration: false,
@@ -433,7 +433,7 @@ describe('Electron desktop runtime', () => {
       webSecurity: true,
       partition: 'persist:dsh-desktop-renderer',
     } })
-    expect(electron.contentViews[1]?.setBounds).toHaveBeenCalledWith({ x: 0, y: 36, width: 1280, height: 804 })
+    expect(electron.contentViews[1]?.setBounds).toHaveBeenCalledWith({ x: 0, y: 44, width: 1280, height: 796 })
     expect(electron.chromeWebContents.loadFile).toHaveBeenCalledWith(expect.stringMatching(/compatibility-chrome\.html$/))
     expect(electron.webContents.loadURL).toHaveBeenCalledWith(spec.url)
     expect(electron.browserWindows[0]?.webContents).not.toBe(electron.webContents)
